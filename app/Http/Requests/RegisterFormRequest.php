@@ -26,14 +26,15 @@ class RegisterFormRequest extends FormRequest
         return [
             'over_name' => 'required|string|max:10',
             'under_name' => 'required|string|max:10',
-            'over_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u'|'max:30',
-            'under_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u'|'max:30',
-            'mail_address' => 'required'|'email'|'unique:users,mail_address'|'max:100',
-            'sex' => 'required'|'in:男性,女性,その他',
-            'birth_day' => 'required'|'date_format:Y-m-d'|'after:2000-01-01'|'before:today',
-            'role' => 'required'|'in:講師（國語）,講師（数学）,教師（英語）,生徒',
-            'password' => 'required'|'min:8'|'max:30'|'confirmed',
-            'password_confirmation' => 'required'|'min:8'|'max:30'
+            'over_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u|max:30',
+            'under_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u|max:30',
+            'mail_address' => 'required|email|unique:users,mail_address|max:100',
+            'sex' => 'required|in:1,2,3',
+            'old_year' => 'required|date_format:Y|after:1999|before:this_year',
+            'old_month' => 'required|date_format:m|',
+            'old_day' => 'required|date',
+            'role' => 'required|in:1,2,3,4',
+            'password' => 'required|min:8|max:30|confirmed',
 
         ];
     }
