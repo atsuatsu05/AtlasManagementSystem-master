@@ -7,12 +7,22 @@
         <div class="detail_inner_head">
           <div>
           </div>
+          <!-- もし投稿者idがログインidと一致していたら表示させる-->
+          @if(Auth::user()->id == $post->user_id)
           <div>
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
+          @endif
+          <!-- ここまで -->
         </div>
-
+        @if($errors->any())
+        @foreach($errors->all() as $error)
+        <ul>
+        <li class="error_message">{{ $error }}</li>
+        </ul>
+        @endforeach
+        @endif
         <div class="contributor d-flex">
           <p>
             <span>{{ $post->user->over_name }}</span>
