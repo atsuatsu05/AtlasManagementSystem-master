@@ -46,7 +46,7 @@ class PostsController extends Controller
     }
 
     public function postInput(){
-        $main_categories = mainCategory::with('subCategories')->get();
+        $main_categories = MainCategory::with('subCategories')->get();
         // dd($main_categories);
         $sub_categories = SubCategory::get();
         return view('authenticated.bulletinboard.post_create', compact('main_categories','sub_categories'));
