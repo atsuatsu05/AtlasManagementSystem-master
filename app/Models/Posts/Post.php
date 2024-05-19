@@ -25,10 +25,11 @@ class Post extends Model
 
     public function subCategories(){
         // リレーションの定義
+        return $this->belongsToMany('App\Models\Posts\Post');
     }
 
     // コメント数
-    public function commentCounts($post_id){
+    public function commentCounts(Int $post_id){
         return Post::with('postComments')->find($post_id)->postComments();
     }
 }

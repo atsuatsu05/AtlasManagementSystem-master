@@ -14,6 +14,7 @@ use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\BulletinBoard\PostEditFormRequest;
 use App\Http\Requests\BulletinBoard\MainCategoryFormRequest;
 use App\Http\Requests\BulletinBoard\SubCategoryFormRequest;
+use App\Http\Requests\BulletinBoard\CommentFormRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -22,6 +23,7 @@ class PostsController extends Controller
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
         $like = new Like;
+        $like_counts = $like->likeCounts();
         $post_comment = new Post;
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
@@ -85,7 +87,7 @@ class PostsController extends Controller
          return redirect()->route('post.input');
   }
 
-    public function commentCreate(Request $request){
+    public function commentCreate(CommentFormRequest $request){
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
