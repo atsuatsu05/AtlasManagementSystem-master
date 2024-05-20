@@ -23,7 +23,7 @@ class PostsController extends Controller
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
         $like = new Like;
-        $like_counts = $like->likeCounts();
+        $like_counts = $like->likeCounts($request);
         $post_comment = new Post;
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
