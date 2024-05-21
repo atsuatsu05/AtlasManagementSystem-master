@@ -22,8 +22,7 @@ class PostsController extends Controller
     public function show(Request $request){
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
-        $like = new Like;
-        $like_counts = $like->likeCounts($request);
+        $like = new Like;//Like::get();
         $post_comment = new Post;
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
