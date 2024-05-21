@@ -31,7 +31,11 @@ class PostEditFormRequest extends FormRequest
 
     public function messages(){
         return [
+            'post_title.required' => 'タイトルの入力は必須です。',
+            'post_title.string' => 'タイトルは文字列で入力ください。',
             'post_title.max' => 'タイトルは100文字以内で入力してください。',
+            'post_body.required' => '投稿内容の入力は必須です。',
+            'post_body.string' => '投稿内容は文字列で入力ください。',
             'post_body.max' => '最大文字数は5000文字です。',
         ];
     }
