@@ -24,11 +24,18 @@ class PostsController extends Controller
         $categories = MainCategory::with('subCategories')->get();
         $like = new Like;
         $post_comment = new Post;
+        $sub_category = SubCategory::get('sub_category');
+        // dd($sub_category);
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')
-            ->orWhereHas('subCategories',function($keyword)use($request){$keyword->where('sub_category',$request);})->get();
+            ->orWhereHas('subCategories',function($q)use($request){
+                $q->where('sub_category',$request->keyword);
+            })
+            ->get();
+
+
         }else if($request->category_word){
             $sub_category = $request->category_word;
             $posts = Post::with('user', 'postComments')->whereHas('subCategories',function($word)use($sub_category){
