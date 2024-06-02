@@ -33,19 +33,19 @@ class CalendarWeekDay{
     if($one_part){
       $html[] = '<div class="day_limit">';
       $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.$ymd.'/'.$one_part->setting_part.'">1部</a></p>';
-      $html[] = '<p class="day_limit ml-20 pt-1">'.$one_part->limit_users.'</p>';
+      $html[] = '<p class="day_limit ml-20 pt-1">'.$one_part->users->count().'</p>';
       $html[] = '</div>';
       }
     if($two_part){
       $html[] = '<div class="day_limit">';
       $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.$ymd.'/'.$two_part->setting_part.'">2部</a></p>';
-      $html[] = '<p class="day_limit ml-20 pt-1">'.$two_part->limit_users.'</p>';
+      $html[] = '<p class="day_limit ml-20 pt-1">'.$two_part->users->count().'</p>';
       $html[] = '</div>';
     }
     if($three_part){
       $html[] = '<div class="day_limit">';
       $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.$ymd.'/'.$three_part->setting_part.'">3部</a></p>';
-      $html[] = '<p class="day_limit ml-20 pt-1">'.$three_part->limit_users.'</p>';
+      $html[] = '<p class="day_limit ml-20 pt-1">'.$three_part->users->count().'</p>';
       $html[] = '</div>';
     }
     $html[] = '</div>';
