@@ -60,7 +60,8 @@ class CalendarView{
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px"></p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            $html[] = '
+            <button type="submit" class="reserve-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .' " reservePart="'.$reservePart.'" settingPart="'.$day->authReserveDate($day->everyDay())->first()->setting_part.'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
@@ -76,6 +77,37 @@ class CalendarView{
     $html[] = '</div>';
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
+
+    // 予約キャンセルのモーダル画面
+    $html[] = '
+    <div class="modal js-modal">
+      <div class="modal__bg js-modal-close"></div>
+      <div class="modal__content">
+        <form action="/delete/calendar" method="post">
+        <div class="w-100">
+         <div class="modal-inner-body w-50 m-auto">
+          <p class="modal-inner-date "></p>
+          <div class="date-modal-hidden">
+            <input type="hidden" name="delete_date" >
+          </div>
+          <p class="modal-inner-part "></p>
+          <div class="part-modal-hidden">
+           <input type="hidden" name="delete_part" value="">
+          </div>
+          <p>上記の予約をキャンセルしてもよろしいですか？</p>
+         </div>
+        </div>
+          <div class="w-50 m-auto edit-modal-btn d-flex">
+            <a class="js-modal-close btn btn-primary d-inline-block" href="">閉じる</a>
+            <input type="hidden" class="edit-modal-hidden" name="reserve_delete" value="reserve_date">
+            <input type="submit" class="btn btn-danger d-block" value="キャンセル">
+          </div>
+        </div>
+        '.csrf_field().'
+        </form>
+      </div>
+    </div>';
+
 
     return implode('', $html);
   }

@@ -35,4 +35,15 @@ class CalendarsController extends Controller
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
     }
+
+    //予約をキャンセルする機能の追加
+    public function delete(Request $request){
+        $delete_date = $request->delete_date;
+        $delete_part = $request->delete_part;
+        $reserve_delete = ReserveSettings::where('setting_reserve',$delete_date)->where('setting_part',$delete_part)->first();
+        $reserve_delete->increment('limit_users');
+        $reserve_delete->users()->detach(Auth::id());
+        $reserve_delete->save();
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
 }
