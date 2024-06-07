@@ -1,9 +1,8 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<div class="board_area w-100 border m-auto d-flex">
-  <div class="post_view w-75 mt-5">
-    <p class="w-75 m-auto">投稿一覧</p>
+<div class="board_area w-100 m-auto d-flex">
+  <div class="post_view w-75 mt-4">
     @foreach($posts as $post)
     <div class="post_area border w-75 m-auto p-3">
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
@@ -30,20 +29,24 @@
     </div>
     @endforeach
   </div>
-  <div class="other_area border w-25">
-    <div class="border m-4">
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
+  <div class="other_area w-25">
+    <div class="m-4">
+      <div class="search_btn btn-block"><a href="{{ route('post.input') }}">投稿</a></div>
+      <div class="search_top">
         <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
         <input type="submit" value="検索" form="postSearchRequest">
       </div>
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+      <input type="submit" name="like_posts" class="category_btn like_btn" value="いいねした投稿" form="postSearchRequest">
+      <input type="submit" name="my_posts" class="category_btn mypost_btn" value="自分の投稿" form="postSearchRequest">
+      <p>カテゴリー検索</p>
       <ul>
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+        <li class="main_categories search_conditions" category_id="{{ $category->id }}"><span>{{ $category->main_category }}</span><p class="accordion_btn{{ $category->id }}"></p></li>
+
          @foreach($category->subCategories as $sub_category)
-          <input type="submit" name="category_word" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+         <div class="category_num{{ $category->id }}">
+          <input type="submit" name="category_word" class="" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+         </div>
          @endforeach
         @endforeach
       </ul>

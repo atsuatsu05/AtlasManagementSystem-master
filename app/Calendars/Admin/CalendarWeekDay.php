@@ -29,7 +29,7 @@ class CalendarWeekDay{
     $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
 
-    $html[] = '<div class="text-left">';
+    $html[] = '<div class="reserve_day">';
     if($one_part){
       $html[] = '<div class="day_limit">';
       $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.$ymd.'/'.$one_part->setting_part.'">1部</a></p>';

@@ -1,9 +1,9 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<div class="vh-100 border">
+<div class="vh-100">
+  <p><span>{{ $user->over_name }}</span><span>{{ $user->under_name }}さんのプロフィール</span></p>
   <div class="top_area w-75 m-auto pt-5">
-    <span>{{ $user->over_name }}</span><span>{{ $user->under_name }}さんのプロフィール</span>
     <div class="user_status p-3">
       <p>名前 : <span>{{ $user->over_name }}</span><span class="ml-1">{{ $user->under_name }}</span></p>
       <p>カナ : <span>{{ $user->over_name_kana }}</span><span class="ml-1">{{ $user->under_name_kana }}</span></p>

@@ -6,12 +6,16 @@
       <div class="p-3">
         <div class="detail_inner_head">
           <div>
+            <!--ポストに紐づいているメインカテゴリーを表示-->
+            @foreach($post->subCategories as $sub_category)
+            <p class="category_btn">{{ $sub_category->sub_category }}</p>
+            @endforeach
           </div>
           <!-- もし投稿者idがログインidと一致していたら表示させる-->
           @if(Auth::user()->id == $post->user_id)
           <div>
-            <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
+            <span class="edit-modal-open btn btn-danger" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
+            <a class="btn btn-primary" href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
           </div>
           @endif
           <!-- ここまで -->
