@@ -4,7 +4,7 @@
   <div class="w-100   p-5">
     <p class="text-center">{{ $calendar->getTitle() }}</p>
     {!! $calendar->render() !!}
-    <div class="adjust-table-btn  text-right">
+    <div class="adjust-table-btn  text-right mt-3">
       <input type="submit" class="btn btn-primary" value="登録" form="reserveSetting" onclick="return confirm('登録してよろしいですか？')">
     </div>
   </div>

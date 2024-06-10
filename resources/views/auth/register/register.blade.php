@@ -14,7 +14,7 @@
 </head>
 <body>
   <form action="{{ route('registerPost') }}" method="POST">
-    <div class="all_content  w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
+    <div class="all_content  w-100  d-flex" style="align-items:center; justify-content:center;">
       <div class="register_body w-25 vh-75 border p-3">
         <div class="register_form">
 

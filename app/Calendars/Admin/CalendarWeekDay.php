@@ -33,7 +33,7 @@ class CalendarWeekDay{
     if($one_part){
       $html[] = '<div class="day_limit">';
       $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/'.$ymd.'/'.$one_part->setting_part.'">1部</a></p>';
-      $html[] = '<p class="day_limit ml-20 pt-1">'.$one_part->users->count().'</p>';
+      $html[] = '<p class="day_limit  ml-20 pt-1">'.$one_part->users->count().'</p>';
       $html[] = '</div>';
       }
     if($two_part){
